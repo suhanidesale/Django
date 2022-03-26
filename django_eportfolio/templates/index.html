@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <title>eportfolio</title>
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+:root{
+  --main-color:#6352be;
+  --bg-color:#fff;
+  --text-color:black;
+  --hover: rgb(55, 30, 122);
+
+  --big-font: 3.2rem;
+  --medium-font: 1.8rem;
+  --p-font: 0.941rem;
+}
+body.active{
+  --text-color: white;
+  --bg-color: black;
+
+
+}
+body{
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+*::selection{
+  color: var(--bg-color);
+  background: var(--main-color);
+}
+
+header{
+  position: fixed;
+  width: 100%;
+  top:0;
+  right: 0;
+  z-index: 1000;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-color);
+  padding: 18px 10%;
+  transition: 0.2s;
+}
+
+header.shadow{
+  box-shadow: 0 0 4px rgb(14 55 54 / 15%);
+}
+
+.logo{
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text-color);
+  
+}
+
+.logo:hover{
+  color: var(--main-color);
+}
+
+.navbar{
+  display: flex;
+}
+
+.navbar a{
+  font-size: 1rem;
+  padding: 10px 20px;
+  color:var(--text-color);
+  font-weight: 500;
+}
+
+.navbar a:hover{
+  background-color: var(--main-color);
+  border-radius: 5px;
+  color: white;
+}
+
+#menu-icon{
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10001;
+  display: none;
+}
+
+#darkmode{
+  font-size: 22px;
+  cursor: pointer;
+  padding-left: 20px;
+}
+
+#darkmode:hover{
+  color: var(--main-color);
+}
+
+section{
+  padding: 50px 10% ;
+}
+
+
+::-webkit-scrollbar {
+    width: 14px;
+    height: 16px;
+}
+
+::-webkit-scrollbar-corner,
+::-webkit-scrollbar-track {
+    background-color: rgb(230, 224, 224);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(156, 154, 154);
+    background-clip: padding-box;
+    border: 2px solid transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(124, 122, 122);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: rgb(128, 128, 128);
+}
+
+/* Buttons */
+::-webkit-scrollbar-button:single-button {
+    background-color: rgb(230, 224, 224);
+
+    display: block;
+    background-size: 10px;
+    background-repeat: no-repeat;
+}
+
+/* Up */
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+    height: 12px;
+    width: 16px;
+    background-position: center 4px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(96, 96, 96)'><polygon points='50,00 0,50 100,50'/></svg>");
+}
+
+.home{
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 0.2fr 1fr 1fr;
+  align-items:center;
+  gap:8rem;
+}
+
+.home-img{
+  order: 3;
+}
+
+.home-img img{
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  width: 80%;
+}
+
+.home-text span{
+  font-size: var(--medium-font);
+  font-weight: 500;
+}
+
+.home-text h1{
+  font-size: var(--big-font);
+}
+
+.home-text h2{
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.home-text p{
+  font-size: var(--p-font);
+  font-weight: 400;
+  margin:0.7rem 0 1rem;
+}
+
+.social{
+  display: flex;
+  flex-direction: column;
+}
+
+.social a{
+  margin-bottom: 1rem;
+  font-size:22px ;
+  color: var(--text-color);
+}
+
+.social a:hover{
+  color: var(--hover);
+}
+
+.btn{
+  display: inline-block;
+
+  background: var(--main-color);
+  color: white;
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.btn:hover{
+  background: var(--hover);
+}
+
+.scroll-down{
+  position: absolute;
+  bottom: 4rem;
+  left: 700px;
+  
+}
+
+.scroll-down a{
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: var(--main-color);
+}
+
+.scroll-down .bx{
+  color: var(--main-color);
+  font-size: 24px;
+}
+
+.heading{
+  text-align: center;
+}
+
+.heading h2{
+  font-size: var(--medium-font);
+}
+
+.heading span{
+  font-size: var(--p-font);
+}
+
+.about-container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.about-img img{
+  width: 80%;
+  border-radius: 0.5rem;
+}
+
+.about-text p{
+  font-size: var(--p-font);
+  font-weight: 400;
+  text-align: justify;
+}
+
+.information{
+  margin: 1rem 0 1.4rem;
+}
+
+.information .info-box{
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.4rem;
+}
+
+.information .info-box .bx{
+  font-size: 22px;
+}
+
+.information .info-box span{
+  font-weight: 400;
+  margin-left: 1rem;
+
+}
+
+.skill-container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 2rem;
+  margin-top:3rem;
+}
+
+.skills-img img{
+  width: 80%;
+  padding-left: 4rem;
+  object-position: center;
+}
+
+.bars-box{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  margin-bottom: 0.5rem;
+}
+.bars-box h3, 
+span{
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.light-bar{
+  position: absolute;
+  bottom:0;
+  left: 0;
+  width: 100%;
+  height: 0.5rem;
+  background:rgb(174, 174, 202);
+  border-radius: 0.5rem;
+}
+
+.percent-bar{
+  position: absolute;
+  bottom:0;
+  left: 0;
+  width: 100%;
+  height: 0.5rem;
+  background: var(--main-color);
+  border-radius: 0.5rem
+}
+.html-bar{
+  width: 80%;
+}
+.css-bar{
+  width: 70%;
+}
+.javascript-bar{
+  width: 0%;
+}
+.c-bar{
+  width: 90%;
+}
+.sql-bar{
+  width: 85%;
+}
+.uiux-bar{
+  width: 90%;
+}
+.cp-bar{
+  width: 30%;
+}
+.java-bar{
+  width: 30%;
+}
+.certificates-content{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.certificates-box{
+  padding: 20px;
+  width: 300px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 0.5rem;
+  border-bottom: 2px solid var(--main-color);
+  box-shadow: 4px 4px 4px  rgb(0 0 0 / 10%);
+   
+}
+
+.certificates-box h3{
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0.7rem 0 0.4rem;
+}
+
+.certificates-box img{
+  padding-top:1rem;
+  width: 200px;
+  height: 180px;
+}
+.certificates-box a{
+  color: var(--main-color);
+  font-size: var(--p-font);
+  font-weight: 500;
+}
+
+.contact-form{
+  display: grid;
+  place-items: center;
+  margin-top: 2rem;
+}
+
+.contact-form form{
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+form input,
+textarea{
+  padding: 12px;
+  border-radius: 0.5rem;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: hsla(260, 100%, 44%, 0.1);
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+form input::placeholder,
+textarea::placeholder{
+  color: var(--text-color);
+}
+
+form textarea{
+  resize: none;
+  height: 200px;
+}
+
+.contact-button{
+  width: 80px;
+  cursor: pointer;
+  background: var(--main-color);
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.contact-button:hover{
+  background: var(--hover);
+}
+.footer{
+  display: grid;
+  place-items: center;
+  padding: 50px;
+  background: var(--main-color);
+  color: white;
+}
+.footer h2{
+  font-size: var(--medium-font);
+  margin-bottom: 1.4rem;
+}
+.footer-social a{
+  color: white;
+  font-size: 22px;
+  padding: 10px;
+}
+@media (max-width:991px){
+  header{
+    padding: 18px 4%;
+  }
+  section{
+    padding: 50px 4%;
+  }
+}
+@media (max-width: 881px){
+  :root{
+    --big-font: 2.7rem;
+    --meddium-font: 1.4rem;
+  }
+}
+@media (max-width: 768px){
+  :root{
+    --big-font: 2.4rem;
+    --meddium-font: 1.2rem;
+  }
+  header{
+    padding: 11px 4%;
+  }
+  #menu-icon{
+    display: initial;
+    color: var(--text-color);
+  }
+  header .navbar{
+    position: absolute;
+    top: -500px;
+    left:0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-color);
+    box-shadow: 0 4px 4px rgb(0 0 0 / 10%);
+    transition: 0.2s ease;
+    text-align: center;
+  }
+  .navbar.active{
+    top:100%;
+  }
+  .navbar a{
+    padding: 1.5rem;
+    display: block;
+    background: var(--bg-color);
+  }
+  #darkmode{
+   position: absolute;
+    top:1.4rem;
+    right: 2rem;
+  }
+  .scroll-down{
+    position: absolute;
+    bottom: 4rem;
+    left: 200px;
+  }
+}
+
+.copyright{
+  padding: 20px;
+  background: var(--main-color);
+  text-align: center;
+  color: white;
+}
+
+</style>
+
+<body>
+    <header>
+        <a href="#" class="logo">John</a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <ul class="navbar">
+            <li><a href="#home">Home</a> </li>
+            <li><a href="#about">About</a> </li>
+            <li><a href="#skills">Skills</a> </li>
+            <li><a href="#certificates">Certificates</a> </li>
+            <li><a href="#lor">LOR</a> </li>
+            <li><a href="#projects">Projects</a> </li>
+            <li><a href="#contact">Contact</a> </li>
+            <div class="bx bx-moon" id="darkmode"></div>
+        </ul>
+
+    </header>
+    <section class="home" id="home">
+        <div class="social">
+            <a href="#"><i class='bx bxl-github'></i></a>
+            <a href="#"><i class='bx bxl-linkedin'></i></a>
+            <a href="#"><i class='bx bxl-gmail'></i></a>
+        </div>
+        <div class="home-img">
+            <img src="images\home.jfif" alt="">
+        </div>
+        <div class="home-text">
+            <span>Hello, I am </span>
+            <h1>John</h1>
+            <h2>Software and Web Developer</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            <a href="#contact" class="btn">Contact Me</a>
+        </div>
+        <div class="scroll-down">
+            <a href="about">
+                <span>Scroll Down</span>
+                <i class='bx bxs-down-arrow-alt'></i>
+            </a>
+        </div>
+    </section>
+    <section class="about" id="about">
+        <div class="heading">
+            <h2>About</h2>
+            <span>Introduction</span>
+        </div>
+        <div class="about-container">
+            <div class="about-img">
+                <img src="images\about.jfif" alt="">
+            </div>
+            <div class="about-text">
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio assumenda eaque, facilis autem dicta
+                    harum quasi quas illo, quo rerum cumque ullam magni ipsum, placeat impedit at architecto molestiae
+                    amet.</p>
+                <div class="information">
+                    <div class="info-box">
+                        <i class='bx bxs-user'></i>
+                        <span>John</span>
+                    </div>
+                    <div class="info-box">
+                        <i class='bx bxs-envelope'></i>
+                        <span>john833@gmail.com</span>
+                    </div>
+                </div>
+                <a href="#" class="btn">Download CV</a>
+            </div>
+        </div>
+    </section>
+    <section class="skills" id="skills">
+        <div class="heading">
+            <h2>Skills</h2>
+            <span>My Skills</span>
+        </div>
+        <div class="skill-container">
+            <div class="bars">
+                <div class="bars-box">
+                    <h3>HTML</h3>
+                    <span>80%</span>
+                    <div class="light-bar"></div>
+                    <div class="percent-bar html-bar"></div>
+                </div>
+
+                <div class="bars-box">
+                    <h3>CSS</h3>
+                    <span>70%</span>
+                    <div class="light-bar"></div>
+                    <div class="percent-bar css-bar"></div>
+                </div>
+
+                <div class="bars-box">
+                    <h3>JavaScript</h3>
+                    <span>0%</span>
+                    <div class="light-bar"></div>
+                    <div class="percent-bar javascript-bar"></div>
+                </div>
+
+                <div class="bars-box">
+                    <h3>C</h3>
+                    <span>90%</span>
+                    <div class="light-bar"></div>
+                    <div class="percent-bar  c-bar"></div>
+                </div>
+
+                <div class="bars-box">
+                    <h3>SQL</h3>
+                    <span>85%</span>
+                    <div class="light-bar"></div>
+                    <div class="percent-bar sql-bar"></div>
+                </div>
+
+                <div class="bars-box">
+                    <h3>UI/UX</h3>
+                    <span>90%</span>
+                    <div class="light-bar"></div>
+                    <div class="percent-bar uiux-bar"></div>
+                </div>
+
+                <div class="bars-box">
+                    <h3>C++</h3>
+                    <span>30%</span>
+                    <div class="light-bar"></div>
+                    <div class="percent-bar cp-bar"></div>
+                </div>
+
+                <div class="bars-box">
+                    <h3>JAVA</h3>
+                    <span>30%</span>
+                    <div class="light-bar"></div>
+                    <div class="percent-bar java-bar"></div>
+                </div>
+
+            </div>
+            <div class="skills-img">
+                <img src="images\skills.jfif" alt="">
+            </div>
+        </div>
+
+    </section>
+    <section class="certificates" id="certificates">
+        <div class="heading">
+            <h2>Certificates</h2>
+            <span>My Certificates</span>
+            <!-- Slider main container -->
+            <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide"><img src="images\certificate img.jpg" ></div>
+                    <div class="swiper-slide"><img src="images\certificate img.jpg" ></div>
+                    <div class="swiper-slide"><img src="images\certificate img.jpg" ></div>
+                    ...
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+
+              
+            </div>
+        
+    </section>
+    <section class="lor" id="lor">
+        <div class="heading">
+            <h2>Letter Of Recommendation</h2>
+            <span>My LOR</span>
+        </div>
+        <div class="certificates-content">
+            <div class="certificates-box">
+                <img src="images\about.jfif" alt="">
+                <h3>By Mr. xyz</h3>
+                <a href="#">Learn More</a>
+            </div>
+
+            <div class="certificates-box">
+                <img src="images\about.jfif" alt="">
+                <h3>By Mr. xyz</h3>
+                <a href="#">Learn More</a>
+            </div>
+
+            <div class="certificates-box">
+                <img src="images\about.jfif" alt="">
+                <h3>By Mr. xyz</h3>
+                <a href="#">Learn More</a>
+            </div>
+
+        </div>
+    </section>
+    <section class="projects" id="projects">
+        <div class="heading">
+            <h2>projects</h2>
+            <span>My projects</span>
+        </div>
+        <div class="certificates-content">
+            <div class="certificates-box">
+                <i class='bx bx-code-alt'></i>
+                <h3>Web <br>Development</h3>
+                <a href="#">Learn More</a>
+            </div>
+
+            <div class="certificates-box">
+                <i class='bx bx-server'></i>
+                <h3>Backend<br>Development</h3>
+                <a href="#">Learn More</a>
+            </div>
+
+            <div class="certificates-box">
+                <i class='bx bx-brush'></i>
+                <h3>UI/UX<br>Design</h3>
+                <a href="#">Learn More</a>
+            </div>
+
+        </div>
+    </section>
+    <section class="contact" id="contact">
+        <div class="heading">
+            <h2>Contact</h2>
+            <span>Connect With Me</span>
+        </div>
+        <div class="contact-form">
+            <form action="">
+                <input type="text" placeholder="Your Name">
+                <input type="email" name="" id="" placeholder="Your Email">
+                <textarea name="" id="" cols="30" rows="10" placeholder="Write Message Here..."></textarea>
+                <input type="button" value="Send" class="contact-button">
+            </form>
+        </div>
+    </section>
+
+    <div class="footer">
+        <h2>John</h2>
+        <div class="footer-social">
+            <a href="#"><i class='bx bxl-github'></i></a>
+            <a href="#"><i class='bx bxl-linkedin'></i></a>
+            <a href="#"><i class='bx bxl-gmail'></i></a>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        let header = document.querySelector('header');
+let menu = document.querySelector('#menu-icon');
+let navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', () => {
+    header.classList.toggle('shadow', window.scrollY > 0);
+});
+
+menu.onclick = () => {
+    navbar.classList.toggle('active');
+}
+window.onscroll = () => {
+    navbar.classList.remove('active');
+}
+
+let darkmode = document.querySelector('#darkmode');
+
+darkmode.onclick = () => {
+    if(darkmode.classList.contains('bx-moon')){
+        darkmode.classList.replace('bx-moon','bx-sun');
+        document.body.classList.add('active');
+    }
+    else{
+        darkmode.classList.replace('bx-sun','bx-moon');
+        document.body.classList.remove('active');
+    }
+
+}
+const swiper = new Swiper('.swiper', {
+    
+  
+    // If we need pagination
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    }
+  
+    // And if we need scrollbar
+    
+  });
+
+    </script>
+
+</body>
+
+</html>

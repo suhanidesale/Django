@@ -6,7 +6,7 @@ from matplotlib.style import context
 def home(request):
     # return HttpResponse("This is the home page")
     context = {'name': 'suhani', 'course': 'information technology'}
-    return render(request , 'home.html' , context)
+    return render(request , 'index.html')
 
 def about(request):
     return HttpResponse("This is the about")
@@ -16,4 +16,3 @@ def projects(request):
   
 def contact(request):
     return HttpResponse("This is the contact")
-  
