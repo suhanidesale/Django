@@ -15,4 +15,10 @@ def projects(request):
     return HttpResponse("This is the projects")
   
 def contact(request):
+    if request.method=="POST":
+        print("This is Post")
+        name = request.POST['name']
+        email = request.POST['email']
+        desc = request.POST['desc']
+        print(name,email,desc)
     return HttpResponse("This is the contact")
